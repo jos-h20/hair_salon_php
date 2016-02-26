@@ -11,7 +11,7 @@ Users can add all of their stylists to a database.  They can update or delete in
 ## Setup/Installation Requirements
 
 * Open the terminal on your computer
-* Go to link: https://github.com/jos-h20/hair_salon.
+* Go to link: https://github.com/jos-h20/hair_salon
 * Copy it.
 * In your terminal, change your directory to desktop, type "git clone" and paste the link in.
 * The folder hair_salon will download on your desktop.
