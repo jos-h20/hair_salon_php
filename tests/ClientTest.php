@@ -54,6 +54,23 @@
 
            $this->assertEquals(true, is_numeric($result));
        }
+       function test_save()
+       {
+           $stylist_name = "Harriet";
+           $id = null;
+           $new_stylist = new Stylist($stylist_name, $id);
+           $new_stylist->save();
+
+           $client_name = "Fred";
+           $stylist_id = $new_stylist->getId();
+           $new_client = new Client($client_name, $stylist_id, $id);
+           $new_client->save();
+
+           $result = Client::getAll();
+
+           $this->assertEquals([$new_client], $result);
+
+       }
 
 
    }
