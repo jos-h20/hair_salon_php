@@ -21,7 +21,10 @@
         {
             return $this->client_name;
         }
-
+        function getId()
+        {
+            return $this->id;
+        }
     }
 
 

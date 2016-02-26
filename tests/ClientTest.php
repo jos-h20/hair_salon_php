@@ -35,7 +35,7 @@
        function test_getId()
        {
            $client_name = "Fred";
-           $cuisine_id = 1;
+           $stylist_id = 1;
            $id = 1;
            $test_client = new Client($client_name, $stylist_id, $id);
 
