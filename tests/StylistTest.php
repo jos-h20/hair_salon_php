@@ -18,7 +18,7 @@
         function test_getStylistName()
         {
             //Arrange
-            $type = "Indian";
+            $stylist_name = "Frida";
             $test_Stylist = new Stylist($stylist_name);
 
             //Act
