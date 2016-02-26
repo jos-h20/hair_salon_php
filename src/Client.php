@@ -11,12 +11,10 @@
             $this->stylist_id = $stylist_id;
             $this->id = $id;
         }
-
         function setClientName($new_client_name)
         {
             $this->client_name = $new_client_name;
         }
-
         function getClientName()
         {
             return $this->client_name;
@@ -53,7 +51,6 @@
             }
             return $clients;
         }
-
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM clients;");
@@ -81,8 +78,5 @@
 
        }
     }
-
-
-
 
 ?>

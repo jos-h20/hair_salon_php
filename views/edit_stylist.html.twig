@@ -1,38 +1,40 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <title>Stylists</title>
+    <link rel="stylesheet" href="/css/styles.css" type="text/css">
+    <title>Update Stylists</title>
 </head>
 <body>
+    <div class="jumbotron">
+        <h1>{{ stylist.getStylistName() }}</h1>
+        <h2><em>Use form to update stylist.</em></h2>
+    </div>
     <div class="container">
-        <div class="jumbotron">
-            <h1>{{ stylist.getStylistName() }}</h1>
-            <h2><em>Use form to update stylist.</em></h2>
-        </div>
         <div class="row">
             <div class="col-sm-6">
                 <h1>Update {{ stylist.getStylistName }}:</h1>
-
                 <form action="/stylists_edit/{{ stylist.getId }}" method="post">
                   <input name="_method" type="hidden" value="patch">
-
                   <label for="name">Update stylist:</label>
                   <input id="name" name="name" type="text">
-
                   <button type="submit">Update</button>
                 </form>
                 <form action="/stylists_edit/{{ stylist.getId }}" method="post">
                   <input name="_method" type="hidden" value="delete">
-
                   <button type="submit">Delete this stylist</button>
                 </form>
-
                 <button class="btn btn-default"><a href="/">Home</a></button>
             </div>
             <div class="col-sm-6">
                 <h2><a href="/total">Click here</a> to see </br>all of the clients and stylists.</h2>
             </div>
-
+        </div>
+    </div>
+    <div class="navbar navbar-fixed-bottom" role="navigation">
+        <div class="container">
+            <div class="navbar-text pull-left">
+                <p>© 2016 Josh Overly.</p>
+            </div>
         </div>
     </div>
 </body>

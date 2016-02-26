@@ -1,14 +1,15 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <title>Stylists</title>
+    <link rel="stylesheet" href="/css/styles.css" type="text/css">
+    <title>Stylist/Client</title>
 </head>
 <body>
+    <div class="jumbotron">
+        <h1>{{ stylist.getStylistName() }}</h1>
+        <h2><em>Add a client or click on a client to update.</em></h2>
+    </div>
     <div class="container">
-        <div class="jumbotron">
-            <h1>{{ stylist.getStylistName() }}</h1>
-            <h2><em>Add a client or click on a client to update.</em></h2>
-        </div>
         <div class="row">
             <div class="col-sm-6">
                 <h2>Add a client.</h2>
@@ -18,7 +19,6 @@
                     <input id="name" name="name" type="text">
                     <button type="submit">Add Client</button>
                 </form>
-
                 {% if clients is not empty %}
                     <h1>Here are {{ stylist.getStylistName() }}'s clients:</h1>
                     <ul>
@@ -26,18 +26,21 @@
                             <h2><a href="/client/{{ client.getId }}">{{ client.getClientName }}</a></h2>
                         {% endfor %}
                     </ul>
-               {% else %}
-                 <p>There are no clients yet! Add a client below.</p>
-               {% endif %}
-
-
-
+                {% else %}
+                <p>There are no clients yet! Add a client below.</p>
+                {% endif %}
             </div>
             <div class="col-sm-6">
                 <h1><a href="/stylists_edit/{{ stylist.getId }}">Click here</a> to update <strong>{{ stylist.getStylistName() }}</strong>.</h1>
                 <h2><a href="/">Home</a></h2>
             </div>
-
+        </div>
+    </div>
+    <div class="navbar navbar-fixed-bottom" role="navigation">
+        <div class="container">
+            <div class="navbar-text pull-left">
+                <p>© 2016 Josh Overly.</p>
+            </div>
         </div>
     </div>
 </body>

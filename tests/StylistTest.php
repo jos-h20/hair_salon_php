@@ -19,9 +19,7 @@
         {
           Stylist::deleteAll();
           Client::deleteAll();
-
         }
-
         function test_getStylistName()
         {
             //Arrange

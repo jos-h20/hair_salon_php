@@ -20,7 +20,6 @@
            Stylist::deleteAll();
            Client::deleteAll();
        }
-
        function test_getClientName()
        {
            $client_name = "Fred";

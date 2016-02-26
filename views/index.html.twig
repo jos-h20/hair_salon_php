@@ -1,53 +1,49 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles.css" type="text/css">
     <title>Hair Salon</title>
 </head>
 <body>
-    <div class="container">
-
-
     <div class="jumbotron">
         <h1>Harry's Hair Salon</h1>
         <h3><em>Manage stylist and client interaction.</em></h3>
         <h3><em>Click on a stylist to add clients.</em></h3>
     </div>
-
-    <div class="row">
-        <div class="col-sm-6">
-            <h2>Add a stylist.</h2>
-            <form action="/stylist" method="post">
-                <label for="name">Stylist Name:</label>
-                <input id="name" name="name" type="text">
-                <button type="submit">Add Stylist</button>
-            </form>
-
-            {% if stylists is not empty %}
-                <h2>Here are the stylists:</h2>
-                <ul>
-                    {% for stylist in stylists %}
-                        <h2><a href="/stylists/{{ stylist.getId }}">{{ stylist.getStylistName }}</a></h2>
-                    {% endfor %}
-                </ul>
-           {% else %}
-             <p>There are no stylists yet!</p>
-           {% endif %}
-
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 form">
+                <h2>Add a stylist.</h2>
+                <form action="/stylist" method="post">
+                    <label for="name">Stylist Name:</label>
+                    <input id="name" name="name" type="text">
+                    <button type="submit">Add Stylist</button>
+                </form>
+                {% if stylists is not empty %}
+                    <h2>Here are the stylists:</h2>
+                    <ul>
+                        {% for stylist in stylists %}
+                            <h2><a href="/stylists/{{ stylist.getId }}">{{ stylist.getStylistName }}</a></h2>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                 <p>There are no stylists yet!</p>
+                {% endif %}
+            </div>
+            <div class="col-sm-6 form">
+                <h3><a href="/total">Click here</a> to see all </br>of the stylists and clients.<h3>
+                <form action='/delete_stylists' method='post'>
+                    <button class='btn btn-danger' type='submit'>Delete Stylists</button>
+                </form>
+            </div>
         </div>
-        <div class="col-sm-6">
-
-            <h3><a href="/total">Click here</a> to see all </br>of the stylists and clients.<h3>
-            <form action='/delete_stylists' method='post'>
-                <button class='btn btn-danger' type='submit'>Delete Stylists</button>
-            </form>
-
-
+    </div>
+    <div class="navbar navbar-fixed-bottom" role="navigation">
+        <div class="container">
+            <div class="navbar-text pull-left">
+                <p>© 2016 Josh Overly.</p>
+            </div>
         </div>
-
     </div>
-
-    </div>
-
-
 </body>
 </html>

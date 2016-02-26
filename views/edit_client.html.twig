@@ -1,14 +1,15 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <title>Clients</title>
+    <link rel="stylesheet" href="/css/styles.css" type="text/css">
+    <title>Edit Client</title>
 </head>
 <body>
+    <div class="jumbotron">
+        <h1>{{ clients.getClientName }}</h1>
+        <h2><em>Use form to update client.</em></h2>
+    </div>
     <div class="container">
-        <div class="jumbotron">
-            <h1>{{ clients.getClientName }}</h1>
-            <h2><em>Use form to update client.</em></h2>
-        </div>
         <div class="row">
             <div class="col-sm-6">
                 <h1>Update {{ clients.getClientName }}:</h1>
@@ -30,16 +31,15 @@
             </div>
             <div class="col-sm-6">
                 <h2><a href="/total">Click here</a> to see </br>all of the clients and stylists.</h2>
-
             </div>
-
         </div>
-
     </div>
-
-
-
-
-
+    <div class="navbar navbar-fixed-bottom" role="navigation">
+        <div class="container">
+            <div class="navbar-text pull-left">
+                <p>© 2016 Josh Overly.</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
