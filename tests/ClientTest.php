@@ -8,7 +8,7 @@
    require_once "src/Client.php";
    require_once "src/Stylist.php";
 
-   $server = 'mysql:host=localhost;dbname=hair_salon_test';
+   $server = 'mysql:host=localhost;dbclient_name=hair_salon_test';
    $username = 'root';
    $password = 'root';
    $DB = new PDO($server, $username, $password);
@@ -21,7 +21,7 @@
     //        Client::deleteAll();
     //    }
 
-       function test_getName()
+       function test_getClientName()
        {
            $client_name = "Fred";
            $stylist_id = 1;
@@ -31,6 +31,17 @@
            $result = $test_client->getClientName();
 
            $this->assertEquals($client_name, $result);
+       }
+       function test_getId()
+       {
+           $client_name = "Fred";
+           $cuisine_id = 1;
+           $id = 1;
+           $test_client = new Client($client_name, $stylist_id, $id);
+
+           $result = $test_client->getId();
+
+           $this->assertEquals(true, is_numeric($result));
        }
 
 
