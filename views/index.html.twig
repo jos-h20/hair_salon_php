@@ -8,12 +8,14 @@
 
 
     <div class="jumbotron">
-        <h1>Stylists</h1>
-        <h3><em>Enter a stylist</em></p>
+        <h1>Harry's Hair Salon</h1>
+        <h3><em>Manage stylist and client interaction.</em></h3>
+        <h3><em>Click on a stylist to add clients.</em></h3>
     </div>
 
     <div class="row">
         <div class="col-sm-6">
+            <h2>Add a stylist.</h2>
             <form action="/stylist" method="post">
                 <label for="name">Stylist Name:</label>
                 <input id="name" name="name" type="text">
@@ -21,22 +23,25 @@
             </form>
 
             {% if stylists is not empty %}
-                <p>See stylists below:</p>
+                <h2>Here are the stylists:</h2>
                 <ul>
                     {% for stylist in stylists %}
-                        <li><a href="/stylists/{{ stylist.getId }}">{{ stylist.getStylistName }}</a></li>
+                        <h2><a href="/stylists/{{ stylist.getId }}">{{ stylist.getStylistName }}</a></h2>
                     {% endfor %}
                 </ul>
            {% else %}
              <p>There are no stylists yet!</p>
            {% endif %}
+
         </div>
         <div class="col-sm-6">
-            <!-- <p><a href="/total">Click here</a> to see all of the restaurants and cuisines.</p>
-            <p><a href="/total_reviews">Click here</a> to see all of the reviews.</p>             -->
+
+            <h3><a href="/total">Click here</a> to see all </br>of the stylists and clients.<h3>
             <form action='/delete_stylists' method='post'>
-                <button class='btn btn-danger' type='submit'>Stylists Be Gone</button>
+                <button class='btn btn-danger' type='submit'>Delete Stylists</button>
             </form>
+
+
         </div>
 
     </div>

@@ -7,30 +7,33 @@
     <div class="container">
         <div class="jumbotron">
             <h1>{{ stylist.getStylistName() }}</h1>
+            <h2><em>Use form to update stylist.</em></h2>
         </div>
         <div class="row">
             <div class="col-sm-6">
+                <h1>Update {{ stylist.getStylistName }}:</h1>
 
-            </div>
-            <div class="col-sm-6">
-                <h1>Update the {{ stylist.getName }} stylist </h1>
-
-                <form action="/stylists/{{ stylist.getId }}" method="post">
+                <form action="/stylists_edit/{{ stylist.getId }}" method="post">
                   <input name="_method" type="hidden" value="patch">
 
-                  <label for="name">Rename your stylist:</label>
+                  <label for="name">Update stylist:</label>
                   <input id="name" name="name" type="text">
 
                   <button type="submit">Update</button>
                 </form>
-                <form action="/stylists/{{ stylist.getId }}" method="post">
+                <form action="/stylists_edit/{{ stylist.getId }}" method="post">
                   <input name="_method" type="hidden" value="delete">
 
                   <button type="submit">Delete this stylist</button>
                 </form>
-                <p><a href="/total">Click here</a> to see all of the clients and stylists.</p>
-                <button><a href="/">Home</a></button>
+
+                <button class="btn btn-default"><a href="/">Home</a></button>
+            </div>
+            <div class="col-sm-6">
+                <h2><a href="/total">Click here</a> to see </br>all of the clients and stylists.</h2>
             </div>
 
         </div>
     </div>
+</body>
+</html>

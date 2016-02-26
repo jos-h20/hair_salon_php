@@ -8,11 +8,14 @@
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
+
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
        'twig.path' => __DIR__.'/../views'
     ));
+
     use Symfony\Component\HttpFoundation\Request;
     Request::enableHttpMethodParameterOverride();
+    
     /*****INDEX PAGE*****/
     $app->get('/', function() use ($app) {
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
@@ -26,6 +29,7 @@
     /*deletes all stylists and clients*/
     $app->post('/delete_stylists', function() use ($app) {
         Stylist::deleteAll();
+        Client::deleteAll();
         return $app['twig']->render('index.html.twig');
     });
     /*****END OF INDEX PAGE*****/
@@ -46,41 +50,50 @@
         $stylist = Stylist::find($stylist_id);
         return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
     });
-    /*edit stylist*/
-    $app->patch("/stylists/{id}", function($id) use ($app) {
-        $name = $_POST['name'];
-        $stylist = Stylist::find($id);
-        $stylist->update($name);
-        return $app['twig']->render('edit_stylist.html.twig', array('stylist' => $stylist,
-        'clients' => $stylist->getClients()
-    ));
-    });
-    /*delete stylist*/
-    $app->delete("/stylists/{id}", function($id) use ($app) {
-        $stylist = Stylist::find($id);
-        $stylist->delete();
-        return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
-    });
     /*****END OF STYLIST PAGE*****/
+    /*****EDIT STYLIST PAGE*****/
+        /*route to edit page*/
+        $app->get("/stylists_edit/{id}", function($id) use ($app) {
+            $stylist = Stylist::find($id);
+            return $app['twig']->render('edit_stylist.html.twig', array('stylist' => $stylist,
+            'clients' => $stylist->getClients()
+        ));
+        });
+        /*edit stylist*/
+        $app->patch("/stylists_edit/{id}", function($id) use ($app) {
+            $name = $_POST['name'];
+            $stylist = Stylist::find($id);
+            $stylist->update($name);
+            return $app['twig']->render('edit_stylist.html.twig', array('stylist' => $stylist,
+            'clients' => $stylist->getClients()
+        ));
+        });
+        /*delete stylist*/
+        $app->delete("/stylists_edit/{id}", function($id) use ($app) {
+            $stylist = Stylist::find($id);
+            $stylist->delete();
+            return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
+        });
+    /*****END OF EDIT STYLIST PAGE*****/
     /*****EDIT CLIENT PAGE*****/
     $app->get("/client/{id}", function($id) use($app) {
         $client = Client::find($id);
         return $app['twig']->render('edit_client.html.twig', array('clients' => $client));
     });
-    /*edit restaurant by id*/
+    /*edit client by id*/
     $app->patch("/clients/{id}", function($id) use ($app) {
         $name = $_POST['name'];
         $client = Client::find($id);
         $client->update($name);
         return $app['twig']->render('edit_client.html.twig', array('clients' => $client));
     });
-    /*delete restaurant by id*/
+    /*delete client by id*/
     $app->delete("/clients/{id}", function($id) use ($app) {
         $client = Client::find($id);
         $client->delete();
         return $app['twig']->render('index.html.twig', array('cuisines' => Stylist::getAll()));
     });
-    /*****END OF SINGLE RESTAURANT PAGE*****/
+    /*****END OF EDIT CLIENT PAGE*****/
     /*****TOTAL*****/
     /*display all*/
     $app->get("/total", function() use ($app){

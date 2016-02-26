@@ -12,17 +12,17 @@
         <div class="container">
             <div class="jumbotron">
                 <h1>All of the stylists and clients</h1>
-                <!-- <h2><em>Click on the restaurant to add a review</em></h2> -->
+
             </div>
             <div class="row">
                 <div class="col-sm-6">
 
                     {% for stylist in stylists %}
-                    <h1>{{ stylist.getStylistName }}</h1>
+                    <h1>Stylist: {{ stylist.getStylistName }}</h1>
                         {% for client in clients %}
                         <ul>
                         {% if stylist.getId == client.getStylistId %}
-                            <li>{{ client.getClienttName }}</a></li>
+                            <h2>Client: {{ client.getClientName }}</a></h2>
                         {% endif %}
                         </ul>
                         {% endfor %}
@@ -30,10 +30,10 @@
                     {% endfor %}
 
 
-                    <h1><a href='/'>Home</a></h1>
+
                 </div>
                 <div class="col-sm-6">
-
+                    <h1><a href='/'>Home</a></h1>
                 </div>
 
             </div>
