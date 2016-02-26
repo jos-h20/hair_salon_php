@@ -56,21 +56,10 @@
             }
             return $found_stylist;
         }
-        function testUpdate()
+        function update($new_name)
         {
-            //Arrange
-            $stylist_id = "Frida";
-            $id = null;
-            $test_stylist = new Stylist($stylist_id, $id);
-            $test_stylist->save();
-
-            $new_stylist_id = "Harriet";
-
-            //Act
-            $test_stylist->update($new_stylist_id);
-
-            //Assert
-            $this->assertEquals("Harriet", $test_stylist->getStylistName());
+            $GLOBALS['DB']->exec("UPDATE stylists SET name = '{$new_name}' WHERE id = {$this->getId()};");
+            $this->setStylistName($new_name);
         }
     }
 ?>
