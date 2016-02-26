@@ -1,0 +1,48 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <title>Hair Salon</title>
+</head>
+<body>
+    <div class="container">
+
+
+    <div class="jumbotron">
+        <h1>Stylists</h1>
+        <h3><em>Enter a stylist</em></p>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <form action="/stylist" method="post">
+                <label for="name">Stylist Name:</label>
+                <input id="name" name="name" type="text">
+                <button type="submit">Add Stylist</button>
+            </form>
+
+            {% if stylists is not empty %}
+                <p>See stylists below:</p>
+                <ul>
+                    {% for stylist in stylists %}
+                        <li><a href="/stylists/{{ stylist.getId }}">{{ stylist.getStylistName }}</a></li>
+                    {% endfor %}
+                </ul>
+           {% else %}
+             <p>There are no stylists yet!</p>
+           {% endif %}
+        </div>
+        <div class="col-sm-6">
+            <!-- <p><a href="/total">Click here</a> to see all of the restaurants and cuisines.</p>
+            <p><a href="/total_reviews">Click here</a> to see all of the reviews.</p>             -->
+            <form action='/delete_stylists' method='post'>
+                <button class='btn btn-danger' type='submit'>Stylists Be Gone</button>
+            </form>
+        </div>
+
+    </div>
+
+    </div>
+
+
+</body>
+</html>
