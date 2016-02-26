@@ -40,7 +40,19 @@
             //Assert
             $this->assertEquals(true, is_numeric($result));
         }
+        function test_save()
+        {
+            //Arrange
+            $stylist_name = "Frida";
+            $test_Stylist = new Stylist($stylist_name);
+            $test_Stylist->save();
 
+            //Act
+            $result = Stylist::getAll();
+
+            //Assert
+            $this->assertEquals($test_Stylist, $result[0]);
+        }
 
     }
 
