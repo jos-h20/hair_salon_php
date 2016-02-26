@@ -1,0 +1,38 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <title>Stylists</title>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>{{ stylist.getStylistName() }}</h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                {% if clients is not empty %}
+                    <p>See clients and their stylists below:</p>
+                    <ul>
+                        {% for client in clients %}
+                            <li><a href="/client/{{ client.getId }}">{{ client.getClientName }}</a></li> <!-- get id to client -->
+                        {% endfor %}
+                    </ul>
+               {% else %}
+                 <p>There are no clients yet! Add a client below.</p>
+               {% endif %}
+
+               <form action="/client" method="post">
+                   <input id="stylist_id" type="hidden" name="stylist_id" value="{{ stylist.getId() }}">
+                   <label for="name">Client Name:</label>
+                   <input id="name" name="name" type="text">
+                   <button type="submit">Add Client</button>
+               </form>
+            </div>
+            <div class="col-sm-6">
+                <p><a href="/stylists/{{ stylist.getId }}">Click here</a> to update stylist list.</p>
+                <p><a href="/clients/{{ clients.getId }}">Click here</a> to update stylist list.</p>
+                <button><a href="/">Home</a></button>
+            </div>
+
+        </div>
+    </div>

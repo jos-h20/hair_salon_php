@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">        <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="/css/bootstrap-theme.min.css" type="text/css">
+        <link rel="stylesheet" href="/css/styles.css" type="text/css">
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="jumbotron">
+                <h1>All of the stylists and clients</h1>
+                <!-- <h2><em>Click on the restaurant to add a review</em></h2> -->
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+
+                    {% for stylist in stylists %}
+                    <h1>{{ stylist.getStylistName }}</h1>
+                        {% for client in clients %}
+                        <ul>
+                        {% if stylist.getId == client.getStylistId %}
+                            <li>{{ client.getClienttName }}</a></li>
+                        {% endif %}
+                        </ul>
+                        {% endfor %}
+
+                    {% endfor %}
+
+
+                    <h1><a href='/'>Home</a></h1>
+                </div>
+                <div class="col-sm-6">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </body>
+</html>

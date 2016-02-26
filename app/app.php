@@ -17,116 +17,78 @@
     $app->get('/', function() use ($app) {
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
-    /*adding a cuisine*/
+    /*adding a stylist*/
     $app->post("/stylist", function() use ($app) {
         $stylist = new Stylist($_POST['name']);
         $stylist->save();
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
-    /*deletes all restaurants and cuisines*/
+    /*deletes all stylists and clients*/
     $app->post('/delete_stylists', function() use ($app) {
         Stylist::deleteAll();
         return $app['twig']->render('index.html.twig');
     });
     /*****END OF INDEX PAGE*****/
-    /*****CUISINE PAGE*****/
-    /*display single cuisine and its restaurants*/
+    /*****STYLIST PAGE*****/
+    /*display single stylist and their clients*/
     $app->get("/stylists/{id}", function($id) use ($app) {
         $stylist = Stylist::find($id);
         return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist,
-        // 'clients' => $stylist->getClients()
+        'clients' => $stylist->getClients()
     ));
     });
-    // /*add a restaurant in cuisines*/
-    // $app->post("/restaurant", function() use ($app) {
-    //     $name = $_POST['name'];
-    //     $cuisine_id = $_POST['cuisine_id'];
-    //     $restaurant = new Restaurant($name, $cuisine_id);
-    //     $restaurant->save();
-    //     $cuisine = Cuisine::find($cuisine_id);
-    //     return $app['twig']->render('cuisine.html.twig', array('cuisine' => $cuisine, 'restaurants' => $cuisine->getRestaurants()));
-    // });
-    /*edit cuisine*/
+    /*add a client in stylist*/
+    $app->post("/client", function() use ($app) {
+        $name = $_POST['name'];
+        $stylist_id = $_POST['stylist_id'];
+        $client = new Client($name, $stylist_id);
+        $client->save();
+        $stylist = Stylist::find($stylist_id);
+        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
+    });
+    /*edit stylist*/
     $app->patch("/stylists/{id}", function($id) use ($app) {
         $name = $_POST['name'];
         $stylist = Stylist::find($id);
         $stylist->update($name);
-        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist,
-        // 'clients' => $stylist->getClients()
+        return $app['twig']->render('edit_stylist.html.twig', array('stylist' => $stylist,
+        'clients' => $stylist->getClients()
     ));
     });
-    /*delete cuisines*/
+    /*delete stylist*/
     $app->delete("/stylists/{id}", function($id) use ($app) {
         $stylist = Stylist::find($id);
         $stylist->delete();
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
-    /*****END OF CUISINE PAGE*****/
-    /*****SINGLE RESTAURANT PAGE*****/
-    // $app->get("/restaurant/{id}", function($id) use($app) {
-    //     $restaurant = Restaurant::find($id);
-    //     return $app['twig']->render('restaurant.html.twig', array('restaurants' => $restaurant));
-    // });
+    /*****END OF STYLIST PAGE*****/
+    /*****EDIT CLIENT PAGE*****/
+    $app->get("/client/{id}", function($id) use($app) {
+        $client = Client::find($id);
+        return $app['twig']->render('edit_client.html.twig', array('clients' => $client));
+    });
     /*edit restaurant by id*/
-    // $app->patch("/restaurants/{id}", function($id) use ($app) {
-    //     $name = $_POST['name'];
-    //     $restaurant = Restaurant::find($id);
-    //     $restaurant->update($name);
-    //     return $app['twig']->render('restaurant.html.twig', array('restaurants' => $restaurant));
-    // });
+    $app->patch("/clients/{id}", function($id) use ($app) {
+        $name = $_POST['name'];
+        $client = Client::find($id);
+        $client->update($name);
+        return $app['twig']->render('edit_client.html.twig', array('clients' => $client));
+    });
     /*delete restaurant by id*/
-    // $app->delete("/restaurants/{id}", function($id) use ($app) {
-    //     $restaurant = Restaurant::find($id);
-    //     $restaurant->delete();
-    //     return $app['twig']->render('index.html.twig', array('cuisines' => Cuisine::getAll()));
-    // });
+    $app->delete("/clients/{id}", function($id) use ($app) {
+        $client = Client::find($id);
+        $client->delete();
+        return $app['twig']->render('index.html.twig', array('cuisines' => Stylist::getAll()));
+    });
     /*****END OF SINGLE RESTAURANT PAGE*****/
     /*****TOTAL*****/
     /*display all*/
-    // $app->get("/total", function() use ($app){
-    //     $cuisine = Cuisine::getAll();
-    //     $restaurants = Restaurant::getAll();
-    //     return $app['twig']->render('total.html.twig', array('cuisines'=> $cuisine, 'restaurants' => $restaurants));
-    // });
+    $app->get("/total", function() use ($app){
+        $stylist = Stylist::getAll();
+        $client = Client::getAll();
+        return $app['twig']->render('total.html.twig', array('stylists'=> $stylist, 'clients' => $client));
+    });
     /*****END OF TOTAL*****/
-    /*****Review*****/
-    // $app->get("/review/{id}", function($id) use($app) {
-    //     $restaurant = Restaurant::find($id);
-    //     return $app['twig']->render('review.html.twig', array('restaurant' => $restaurant, 'reviews' => $restaurant->getReviews()));
-    // });
-    /*add a restaurant in cuisines*/
-    // $app->post("/review", function() use ($app) {
-    //     $rating = $_POST['rating'];
-    //     $restaurant_id = $_POST['restaurant_id'];
-    //     $review= new Review($rating, $restaurant_id);
-    //     $review->save();
-    //     $restaurant = Restaurant::find($restaurant_id);
-    //     return $app['twig']->render('review.html.twig', array('restaurant' => $restaurant, 'reviews' => $restaurant->getReviews()));
-    // });
-    /*edit restaurant by id*/
-    // $app->patch("/reviews/{id}", function($id) use ($app) {
-    //     $rating = $_POST['rating'];
-    //     $review = Review::find($id);
-    //     $review->update($rating);
-    //     return $app['twig']->render('total_reviews.html.twig', array('reviews' => Review::getAll(), 'restaurants' => Restaurant::getAll()));
-    // });
-    /*delete restaurant by id*/
-    // $app->delete("/reviews/{id}", function($id) use ($app) {
-    //     $review = Review::find($id);
-    //     $review->delete();
-    //     return $app['twig']->render('total_reviews.html.twig', array('reviews' => Review::getAll(),'restaurants' => Restaurant::getAll()));
-    // });
-    /*****END OF Review*****/
-    /*****TOTALReviewS*****/
-    // $app->get("/total_reviews", function() use ($app){
-    //     $restaurant = Restaurant::getAll();
-    //     $reviews = Review::getAll();
-    //     return $app['twig']->render('total_reviews.html.twig', array('restaurants'=> $restaurant, 'reviews' => $reviews));
-    // });
-    // $app->get("/reviews/{id}", function($id) use($app) {
-    //     $review = Review::find($id);
-    //     return $app['twig']->render('total.html.twig', array('reviews' => $review));
-    // });
-    /*****END OF TOTALReviewS*****/
+
     return $app;
  ?>

@@ -1,0 +1,36 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <title>Stylists</title>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>{{ stylist.getStylistName() }}</h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+
+            </div>
+            <div class="col-sm-6">
+                <h1>Update the {{ stylist.getName }} stylist </h1>
+
+                <form action="/stylists/{{ stylist.getId }}" method="post">
+                  <input name="_method" type="hidden" value="patch">
+
+                  <label for="name">Rename your stylist:</label>
+                  <input id="name" name="name" type="text">
+
+                  <button type="submit">Update</button>
+                </form>
+                <form action="/stylists/{{ stylist.getId }}" method="post">
+                  <input name="_method" type="hidden" value="delete">
+
+                  <button type="submit">Delete this stylist</button>
+                </form>
+                <p><a href="/total">Click here</a> to see all of the clients and stylists.</p>
+                <button><a href="/">Home</a></button>
+            </div>
+
+        </div>
+    </div>
