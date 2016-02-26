@@ -25,6 +25,15 @@
         {
             return $this->id;
         }
+        function setStylistId($new_stylist_id)
+        {
+            $this->stylist_id = $new_stylist_id;
+        }
+
+        function getStylistId()
+        {
+            return $this->stylist_id;
+        }
     }
 
 
