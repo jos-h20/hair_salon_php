@@ -28,7 +28,7 @@
            $id = null;
            $test_client = New Client($client_name, $stylist_id, $id);
 
-           $result = $test_client->getName();
+           $result = $test_client->getClientName();
 
            $this->assertEquals($client_name, $result);
        }
