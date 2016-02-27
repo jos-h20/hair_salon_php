@@ -85,9 +85,10 @@
         return $app['twig']->render('edit_client.html.twig', array('clients' => $client));
     });
     /*delete client by id*/
-    $app->delete("/clients/{id}", function($id) use ($app) {
-        $client = Client::find($id);
+    $app->delete("/clients/{client_id}", function($client_id) use ($app) {
+        $client = Client::find($client_id);
         $client->delete();
+        // $stylist = Stylist::find($stylist_id);
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll(), 'clients' => Client::getAll()));
     });
     /*****END OF EDIT CLIENT PAGE*****/
