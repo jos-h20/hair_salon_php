@@ -17,7 +17,7 @@ Users can add all of their stylists to a database.  They can update or delete in
 * The folder hair_salon will download on your desktop.
 * Change your directory to hair_salon.
 * Type in "composer install" in that folder.
-* Open web folder inside word_counter in your terminal.
+* Open web folder inside hair_salon in your terminal.
 * Start your PHP server by typing in "php -S localhost:8000".
 * Open your web browser and type in "localhost:8000".
 
